@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
 
-import Person from './Person/Person';
+import Person from '../components/Persons/Person/Person';
+// import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
   state = {
@@ -60,16 +61,8 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer'
-    };
-
     let persons = null;
+    let btnClass = '';
 
     if (this.state.showPersons) {
       persons = (
@@ -84,24 +77,16 @@ class App extends Component {
         </div>
       );
 
-      style.backgroundColor = 'red';
-    }
-
-    const classes = [];
-
-    if (this.state.persons.length <= 2) {
-      classes.push('red');
-    }
-
-    if (this.state.persons.length <= 1) {
-      classes.push('bold');
+      btnClass = classes.red;
     }
 
     return (
-      <div className="App">
+      <div className={classes.App}>
         <h1>This is my first react app!</h1>
-        <p className={classes.join(' ')}>Good Job!!!</p>
-        <button style={style} onClick={this.togglePersonsHandler}>Toggle persons</button>
+        <p>Good Job!!!</p>
+        <button
+          className={btnClass}
+          onClick={this.togglePersonsHandler}>Toggle persons</button>
         {persons}
       </div>
     );
