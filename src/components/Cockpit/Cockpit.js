@@ -1,3 +1,4 @@
+// Functional component
 import React from 'react';
 
 import classes from './Cockpit.css';
@@ -18,7 +19,7 @@ const cockpit = ( props ) => {
     }
     return (
         <div className={classes.Cockpit}>
-            <h1>This is my first react app!</h1>
+            <h1>{ props.appTitle }</h1>
             <p className={assignedClasses.join(' ')}>Good Job!!!</p>
             <button
             className={btnClass}

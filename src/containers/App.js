@@ -1,3 +1,4 @@
+// State full component
 import React, { Component } from 'react';
 import classes from './App.css';
 
@@ -6,27 +7,61 @@ import Cockpit from '../components/Cockpit/Cockpit';
 // import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
-  state = {
-    persons: [
-      {
-        id: '1',
-        name: 'Preejith',
-        age: 39
-      },
-      {
-        id: '2',
-        name: 'Resmi',
-        age: 30
-      },
-      {
-        id: '3',
-        name: 'Pranav',
-        age: 10
-      }
-    ],
-    otherState: 'Some other',
-    showPersons: false
+  constructor(props) {
+    super(props);
+    this.state = {
+      persons: [
+        {
+          id: '1',
+          name: 'Preejith',
+          age: 39
+        },
+        {
+          id: '2',
+          name: 'Resmi',
+          age: 30
+        },
+        {
+          id: '3',
+          name: 'Pranav',
+          age: 10
+        }
+      ],
+      otherState: 'Some other',
+      showPersons: false
+    };
+    console.log('[App.js] inside constructor', props);
   }
+
+  componentWillMount() {
+    console.log('[App.js] inside will mount');
+  }
+
+  componentDidMount() {
+    console.log('Inside did mount');
+  }
+  
+  // state = {
+  //   persons: [
+  //     {
+  //       id: '1',
+  //       name: 'Preejith',
+  //       age: 39
+  //     },
+  //     {
+  //       id: '2',
+  //       name: 'Resmi',
+  //       age: 30
+  //     },
+  //     {
+  //       id: '3',
+  //       name: 'Pranav',
+  //       age: 10
+  //     }
+  //   ],
+  //   otherState: 'Some other',
+  //   showPersons: false
+  // }
 
   nameChangeHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(p => {
@@ -62,6 +97,7 @@ class App extends Component {
   }
 
   render() {
+    console.log('Inside render')
     let persons = null;
 
     if (this.state.showPersons) {
@@ -75,6 +111,7 @@ class App extends Component {
     return (
       <div className={classes.App}>
         <Cockpit 
+          appTitle={this.props.title}
           showPersons={this.state.showPersons}
           persons={this.state.persons}
           clicked={this.togglePersonsHandler}
